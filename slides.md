@@ -61,6 +61,12 @@ A *virtual environment* is set of environmental variables for running software i
 A Python virtual environment has its own self-contained `site-packages` directory and Python path which points to a particular Python interpreter. When you activate a virtual environment, it updates your `PATH` so that when Python looks for a package it looks in the virtual environment, not your system.
 
 ---
+
+```bash
+conda create --name myenv python=3.6
+```
+
+---
 <!-- _class: lead -->
 
 > Help! I updated Python and now my code is broken!
