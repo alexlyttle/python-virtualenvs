@@ -8,12 +8,10 @@ _paginate: false
 
 # Python Virtual Environments
 
-Alex Lyttle
-
-14 May 2021
+Alex Lyttle | Skills Session | 14 May 2021
 
 ---
-<!-- footer: 'Alex Lyttle, 14 May 2021' -->
+<!-- footer: 'Alex Lyttle | Skills Session | 14 May 2021' -->
 
 # Title
 
@@ -48,7 +46,19 @@ https://marpit.marp.app/markdown
 
 ---
 
+# Why a virtual environment?
+
+When you install a Python *package* (e.g. `numpy` or `scipy`) it is installed in the `site-packages` directory associated with your Python interpreter. This is how Python accesses the package when you run code.
+
+When you install a package, it may have *dependencies* &mdash; i.e. other required packages. Sometimes dependencies must be a *particular version* in order for a package to work. **Therefore, if you update one package, it could break another.**
+
+---
+
 # What is a virtual environment?
+
+A *virtual environment* is set of environmental variables for running software isolated from your system.
+
+A Python virtual environment has its own self-contained `site-packages` directory and Python path which points to a particular Python interpreter. When you activate a virtual environment, it updates your `PATH` so that when Python looks for a package it looks in the virtual environment, not your system.
 
 ---
 <!-- _class: lead -->
