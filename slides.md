@@ -2,15 +2,9 @@
 marp: true
 theme: mytheme
 paginate: true
-style: |
-  :root {
-    --color-background: #fff !important;
-    --color-foreground: #002255 !important;
-    --color-highlight: #0077BB !important;
-    --color-dimmed: #FFBE1E !important;
-  }
-_class: lead
+_paginate: false
 ---
+<!-- _class: lead -->
 
 # Python Virtual Environments
 
@@ -19,6 +13,7 @@ Alex Lyttle
 14 May 2021
 
 ---
+<!-- footer: 'Alex Lyttle, 14 May 2021' -->
 
 # Title
 
@@ -47,21 +42,19 @@ https://marpit.marp.app/markdown
 4. Worked example
 
 ---
-<!-- class: lead -->
+<!-- _class: lead -->
 
 > Help! I updated a Python package and now my code is broken!
 
 ---
-<!-- class: none -->
 
 # What is a virtual environment?
 
 ---
-<!-- class: lead -->
+<!-- _class: lead -->
 
 > Help! I updated Python and now my code is broken!
 
 ---
-<!-- class: none -->
 
-# How do I manage different Python versions?
+# <!--fit--> How do I manage different Python versions?

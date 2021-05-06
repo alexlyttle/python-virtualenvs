@@ -1,11 +1,43 @@
 /**
- * gaia-16-9 theme is based on Gaia theme, but 4:3 slide cannot use.
+ * Theme is based on Gaia theme but with custom colour scheme,
+ * background and blockquotes.
  *
  * @theme mytheme
  */
 
 @import 'gaia';
 
+:root {
+    --color-background: rgb(255, 250, 240) !important;
+    --color-foreground: #002255 !important;
+    --color-highlight: #FFBE1E !important;
+    --color-dimmed: #BBBBBB !important;
+}
+
+/* Styling main section */
+section {
+    background-image: linear-gradient(
+        150.7deg,
+        rgba(136, 136, 136, 0),
+        rgba(136, 136, 136, 0.04) 50%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.04)
+    );
+}
+
+/* Styling page number */
+section::after {
+    color: var(--color-dimmed);
+    font-size: 66%;
+    font-style: italic;
+}
+
+/* Styling footer */
+footer {
+    font-size: 66%;
+}
+
+/* Styling blockquotes */
 blockquote{
     padding: 0 1.5em;
 }
@@ -17,8 +49,4 @@ blockquote::before {
 
 blockquote::after {
     content: "";
-}
-
-code {
-    background: var(--color-foreground);
 }
