@@ -33,9 +33,9 @@ https://marpit.marp.app/markdown
 
 1. Quiz
 2. What is a virtual environment?
-    - Conda
-    - Venv
-    - Virtualenv
+    - `conda`
+    - `venv`
+    - `virtualenv`
 3. How do I manage different Python versions?
 4. Worked example
 
@@ -58,13 +58,67 @@ When you install a package, it may have *dependencies* &mdash; i.e. other requir
 
 A *virtual environment* is set of environmental variables for running software isolated from your system.
 
-A Python virtual environment has its own self-contained `site-packages` directory and Python path which points to a particular Python interpreter. When you activate a virtual environment, it updates your `PATH` so that when Python looks for a package it looks in the virtual environment, not your system.
+A Python virtual environment has its own self-contained `site-packages` directory and Python path which points to a particular Python interpreter. When you run Python in a virtual environment, it updates your `sys.path` so that Python looks for packages installed within the environment only.
 
 ---
+
+# How do I make a virtual environment?
+
+![bg blur:1px right:33%](assets/images/terminal-code.png)
+
+- Depends on how you installed Python
+  - Anaconda uses `conda` to manage environments
+  - `venv` comes with Python 3
+  - Or, the `virtualenv` package
+
+---
+
+# Virtual environments with `conda`
+
+![width:200px](assets/images/anaconda-logo.png) If familiar, you can use Anaconda  Navigator.
+
+Alternatively, open your Terminal or Anaconda Prompt and use the `conda create` command to setup an empty virtual environment. For example,
 
 ```bash
 conda create --name myenv python=3.6
 ```
+
+where `python=3.6` specifies the Python version you want for the environment.
+
+---
+
+# Virtual environments with `conda`
+
+To *activate* the environment at any time,
+
+```bash
+conda activate myenv
+```
+
+You can then install packages (e.g. `conda install scipy`).
+
+To *deactivate* the environment,
+
+```bash
+conda deactivate
+```
+
+---
+
+# Aside: `PATH`
+
+What happens when we type `python` into the Terminal?
+
+- The console searches your system `PATH` for the first script named `python`.
+
+---
+
+# Virtual environments with `venv`
+
+- The simplest way to get started without `conda`
+- Only works with Python 3
+
+
 
 ---
 <!-- _class: lead -->
