@@ -40,15 +40,64 @@ https://marpit.marp.app/markdown
 4. Worked example
 
 ---
+
+# What do I mean by Python?
+
+Python is an interpreted programming language. To run Python code we need to install an *interpreter*. You may then access the interpreter with the `python` command in your *terminal* application.
+
+- Your computer searches the `PATH` for the first script named `python`.
+- Depending on your system or installation, this could correspond to Python 2 or 3.
+- You may need to type `python3` if both versions are installed.
+
+---
+
+# <!-- fit --> What is the Python Package Index (PyPI)
+
+Most Python packages are available on PyPI, an online repository. You can install packages through the Python module `pip` by using the `pip` command in your terminal,
+
+- Your computer searches the `PATH` for the first script named `pip`.
+- This may not correspond to the version of Python you want to use!
+- If unsure, use `python -m pip` where `python` is your chosen version.
+- Use `python -m pip --user` to install packages to your user, not the system.
+
+---
 <!-- _class: lead -->
 
 > Help! I updated a Python package and now my code is broken!
 
 ---
 
+# Example
+
+We want to run a script `myscript.py`
+
+- Imports some packages called `foo` and `bar` available on PyPI
+- `bar` *depends* on a specific version of `foo`
+
+We type the following into our terminal,
+
+```bash
+python -m pip install foo bar  # Installs script dependencies
+python myscript.py             # Runs the script
+```
+
+---
+
+# Example
+
+Later, we update `foo` to use a new feature,
+
+```bash
+pip install --upgrade foo
+```
+
+We run `myscript.py` again, but now there's an error! The `bar` package doesn't work with the updated `foo` package.
+
+---
+
 # Why a virtual environment?
 
-When you install a Python *package* (e.g. `numpy` or `scipy`) it is installed in the `site-packages` directory associated with your Python interpreter. This is how Python accesses the package when you run code.
+When you install `foo` and `bar` they are put in the `site-packages` directory associated with your Python interpreter. This is how Python accesses the package when you run code.
 
 When you install a package, it may have *dependencies* &mdash; i.e. other required packages. Sometimes dependencies must be a *particular version* in order for a package to work. **Therefore, if you update one package, it could break another.**
 
@@ -56,15 +105,16 @@ When you install a package, it may have *dependencies* &mdash; i.e. other requir
 
 # What is a virtual environment?
 
-A *virtual environment* is set of environmental variables for running software isolated from your system.
-
-A Python virtual environment has its own self-contained `site-packages` directory and Python path which points to a particular Python interpreter. When you run Python in a virtual environment, it updates your `sys.path` so that Python looks for packages installed within the environment only.
+- Allows you to keep dependencies required by different projects separate
+- Updates your `PATH` to point to a chosen Python interpreter
+- Has its own isolated `site-packages` directory
+- Updates your `sys.path` so that Python looks for packages installed within the isolated `site-packages` directory only
 
 ---
 
 # How do I make a virtual environment?
 
-![bg blur:1px right:33%](assets/images/terminal-code.png)
+![bg right:33% height:50% blur:1px](assets/images/terminal-code.png)
 
 - Depends on how you installed Python
   - Anaconda uses `conda` to manage environments
@@ -75,9 +125,9 @@ A Python virtual environment has its own self-contained `site-packages` director
 
 # Virtual environments with `conda`
 
-![width:200px](assets/images/anaconda-logo.png) If familiar, you can use Anaconda  Navigator.
+If familiar, you can use Anaconda  Navigator. ![width:200px](assets/images/anaconda-logo.png)
 
-Alternatively, open your Terminal or Anaconda Prompt and use the `conda create` command to setup an empty virtual environment. For example,
+Alternatively, open your **Terminal** or **Anaconda Prompt** and use the `conda create` command to setup an empty virtual environment. For example,
 
 ```bash
 conda create --name myenv python=3.6
@@ -95,7 +145,7 @@ To *activate* the environment at any time,
 conda activate myenv
 ```
 
-You can then install packages (e.g. `conda install scipy`).
+Then, you may install packages (e.g. `conda install scipy`).
 
 To *deactivate* the environment,
 
@@ -105,20 +155,10 @@ conda deactivate
 
 ---
 
-# Aside: `PATH`
-
-What happens when we type `python` into the Terminal?
-
-- The console searches your system `PATH` for the first script named `python`.
-
----
-
 # Virtual environments with `venv`
 
 - The simplest way to get started without `conda`
-- Only works with Python 3
-
-
+- Only works with Python 3 (for Python 2 see `virtualenv`)
 
 ---
 <!-- _class: lead -->
