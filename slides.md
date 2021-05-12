@@ -13,35 +13,28 @@ Alex Lyttle | Skills Session | 14 May 2021
 ---
 <!-- footer: 'Alex Lyttle | Skills Session | 14 May 2021' -->
 
-# Title
+# Overview
 
-This is some `inline code`
-
-```bash
-echo this is a code block
-```
-
-> This is a blockquote
-
-$$a^2 = b^2 + c^2$$
-
-https://marpit.marp.app/markdown
+1. Prerequisits and definitions
+2. Why do I need a virtual environment?
+3. How do I create a virtual environment?
+4. Will it work with Jupyter notebooks?
+5. How do I manage different Python versions?
+6. Live demonstration
 
 ---
 
-# Introduction
+# Prerequisites
 
-1. Quiz
-2. What is a virtual environment?
-    - `conda`
-    - `venv`
-    - `virtualenv`
-3. How do I manage different Python versions?
-4. Worked example
+This skills session assumes the following,
+
+- Python >= 3.3
+- Conda >= 4.6 (optional)
+- IPython >= 6.0 (optional)
 
 ---
 
-# What do I mean by Python?
+# What is Python?
 
 Python is an interpreted programming language. To run Python code we need to install an *interpreter*. You may then access the interpreter with the `python` command in your *terminal* application.
 
@@ -51,14 +44,22 @@ Python is an interpreted programming language. To run Python code we need to ins
 
 ---
 
-# <!-- fit --> What is the Python Package Index (PyPI)
+# What is Conda?
 
-Most Python packages are available on PyPI, an online repository. You can install packages through the Python module `pip` by using the `pip` command in your terminal,
+Conda is a package and environment management system. Unlike `pip`, Conda can be used to manage environments with multiple programming languages.
+
+If you installed Python with Anaconda, it is managed by the Conda environment named `base`. You can use the `conda` command in the Anaconda Prompt, or in your terminal after you use `conda init` to configure your `PATH`. Use `conda activate` to access the `python` command.
+
+---
+
+# What is `pip`?
+
+You can install many packages, available locally, or remotely via the Python Package Index (PyPI), through the Python module `pip`. Using the `pip` command in your terminal,
 
 - Your computer searches the `PATH` for the first script named `pip`.
 - This may not correspond to the version of Python you want to use!
 - If unsure, use `python -m pip` where `python` is your chosen version.
-- Use `python -m pip --user` to install packages to your user, not the system.
+- Use `python -m pip --user` to install packages to your user, not system-wide.
 
 ---
 <!-- _class: lead -->
@@ -97,7 +98,7 @@ We run `myscript.py` again, but now there's an error! The `bar` package doesn't 
 
 # Why a virtual environment?
 
-When you install `foo` and `bar` they are put in the `site-packages` directory associated with your Python interpreter. This is how Python accesses the package when you run code.
+When you install `foo` and `bar` they are put in the `site-packages` directory associated with your Python interpreter. This is where Python accesses the package when you run code.
 
 When you install a package, it may have *dependencies* &mdash; i.e. other required packages. Sometimes dependencies must be a *particular version* in order for a package to work. **Therefore, if you update one package, it could break another.**
 
@@ -106,7 +107,7 @@ When you install a package, it may have *dependencies* &mdash; i.e. other requir
 # What is a virtual environment?
 
 - Allows you to keep dependencies required by different projects separate
-- Updates your `PATH` to point to a chosen Python interpreter
+- Updates your `PATH` to prioritise a specific Python interpreter
 - Has its own isolated `site-packages` directory
 - Updates your `sys.path` so that Python looks for packages installed within the isolated `site-packages` directory only
 
@@ -159,6 +160,53 @@ conda deactivate
 
 - The simplest way to get started without `conda`
 - Only works with Python 3 (for Python 2 see `virtualenv`)
+
+---
+
+# Virtual environments with `virtualenv`
+
+- The simplest way to get started without `conda`
+- Only works with Python 3 (for Python 2 see `virtualenv`)
+
+---
+
+# Virtual environments with `virtualenvwrapper`
+
+- The simplest way to get started without `conda`
+- Only works with Python 3 (for Python 2 see `virtualenv`)
+
+---
+
+# Jupyter Notebooks
+
+Assuming Jupyter is installed on your computer. What if you want to run a Jupyter Notebook within your virtual environment?
+
+**No need to install Jupyter in every environment!**
+
+You only need to install the IPython kernelspec for that environment.
+
+---
+
+# Jupyter Notebooks - `conda`
+
+https://ipython.readthedocs.io/en/stable/install/kernel_install.html
+
+```bash
+conda activate myenv  # make sure we are in myenv
+conda install ipykernel
+python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
+```
+
+---
+
+# Jupyter Notebooks - `pip`
+
+```bash
+source ~/.virtualenvs/myenv/bin/activate  # if using venv or virtualenv OR
+workon myenv                              # if using virtualenvwrapper
+pip install ipykernel
+python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
+```
 
 ---
 <!-- _class: lead -->
