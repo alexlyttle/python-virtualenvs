@@ -161,19 +161,80 @@ conda deactivate
 - The simplest way to get started without `conda`
 - Only works with Python 3 (for Python 2 see `virtualenv`)
 
+```bash
+python -m venv path/to/myenv
+
+source path/to/myenv/bin/activate
+# ... you can now install packages in this environment, e.g.
+pip install foo==1.0  # example installing version 1.0
+deactivate
+```
+
 ---
 
-# Virtual environments with `virtualenv`
+# <!-- fit --> Virtual environments with `virtualenv`
 
-- The simplest way to get started without `conda`
-- Only works with Python 3 (for Python 2 see `virtualenv`)
+- Compatible with Python 2
+- Compatible with `virtualenvwrapper`
+- More features
+
+```bash
+python -m pip install virtualenv
+```
+
+To create the environment,
+
+```bash
+virtualenv path/to/myenv
+```
 
 ---
 
-# Virtual environments with `virtualenvwrapper`
+# <!-- fit --> Virtual environments with `virtualenvwrapper`
 
-- The simplest way to get started without `conda`
-- Only works with Python 3 (for Python 2 see `virtualenv`)
+- Provides memorable, easy to use commands
+- Requires a bit more setup
+- Use [virtualenvwraper-win](https://pypi.org/project/virtualenvwrapper-win/) on Windows OS
+
+```bash
+python -m pip install virtualenvwrapper
+```
+
+See [here](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) for more information on installation.
+
+---
+
+# <!-- fit --> Virtual environments with `virtualenvwrapper`
+
+For example, on Unix-like OS, add these lines to your shell startup file (e.g. `.bashrc`, `.profile`, `.zshrc`)
+
+```bash
+export WORKON_HOME=$HOME/.virtualenvs  # Path to virtual environments folder
+export PROJECT_HOME=$HOME/Projects     # Path to your projects folder
+source /usr/local/bin/virtualenvwrapper.sh  # 
+```
+
+then reload the startup file,
+
+```bash
+source path/to/startup/file
+```
+
+---
+
+# <!-- fit --> Virtual environments with `virtualenvwrapper`
+
+To make an environment,
+
+```bash
+mkvirtualenv myenv
+```
+
+then to activate the environment,
+
+```bash
+workon myenv
+```
 
 ---
 
@@ -183,13 +244,12 @@ Assuming Jupyter is installed on your computer. What if you want to run a Jupyte
 
 **No need to install Jupyter in every environment!**
 
-You only need to install the IPython kernelspec for that environment.
+You only need to install the IPython kernelspec for that environment. See [here](https://ipython.readthedocs.io/en/stable/install/kernel_install.html
+) for more.
 
 ---
 
 # Jupyter Notebooks - `conda`
-
-https://ipython.readthedocs.io/en/stable/install/kernel_install.html
 
 ```bash
 conda activate myenv  # make sure we are in myenv
@@ -204,6 +264,7 @@ python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)
 ```bash
 source ~/.virtualenvs/myenv/bin/activate  # if using venv or virtualenv OR
 workon myenv                              # if using virtualenvwrapper
+
 pip install ipykernel
 python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
 ```
