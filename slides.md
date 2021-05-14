@@ -16,9 +16,9 @@ Alex Lyttle | Skills Session | 14 May 2021
 # Overview
 
 1. Prerequisits and definitions
-2. Why do I need a virtual environment?
+2. Why should I use a virtual environment?
 3. How do I create a virtual environment?
-4. Will it work with Jupyter notebooks?
+4. Will they work with Jupyter notebooks?
 5. How do I manage different Python versions?
 6. Live demonstration
 
@@ -26,11 +26,12 @@ Alex Lyttle | Skills Session | 14 May 2021
 
 # Prerequisites
 
-This skills session assumes the following,
+This skills session assumes you are familiar with the following,
 
 - Python >= 3.3
 - Conda >= 4.6 (optional)
 - IPython >= 6.0 (optional)
+- Python 2 (optional)
 
 ---
 
@@ -44,22 +45,22 @@ Python is an interpreted programming language. To run Python code we need to ins
 
 ---
 
-# What is Conda?
-
-Conda is a package and environment management system. Unlike `pip`, Conda can be used to manage environments with multiple programming languages.
-
-If you installed Python with Anaconda, it is managed by the Conda environment named `base`. You can use the `conda` command in the Anaconda Prompt, or in your terminal after you use `conda init` to configure your `PATH`. Use `conda activate` to access the `python` command.
-
----
-
 # What is `pip`?
 
-You can install many packages, available locally, or remotely via the Python Package Index (PyPI), through the Python module `pip`. Using the `pip` command in your terminal,
+You can install many packages (available locally, or remotely via PyPI) through the Python module `pip`. Using the `pip` command in your terminal,
 
 - Your computer searches the `PATH` for the first script named `pip`.
 - This may not correspond to the version of Python you want to use!
 - If unsure, use `python -m pip` where `python` is your chosen version.
-- Use `python -m pip --user` to install packages to your user, not system-wide.
+- Use `python -m pip --user` to install packages to your user only.
+
+---
+
+# What is Conda?
+
+Conda is a package and environment management system. Unlike `pip`, Conda can be used to manage environments with multiple programming languages.
+
+If you installed Python with Anaconda, it is managed by the `base` Conda environment. You can use the `conda` command in the Anaconda Prompt, or in your terminal after you use `conda init` to configure your `PATH`. Restart your terminal to access the `python` command.
 
 ---
 <!-- _class: lead -->
@@ -117,36 +118,37 @@ When you install a package, it may have *dependencies* &mdash; i.e. other requir
 
 ![bg right:33% height:50% blur:1px](assets/images/terminal-code.png)
 
-- Depends on how you installed Python
-  - Anaconda uses `conda` to manage environments
-  - `venv` comes with Python 3
-  - Or, the `virtualenv` package
+Depends on how you installed Python
+- Anaconda/Miniconda uses `conda` to manage environments
+- Otherwise
+  - `venv`  
+  - `virtualenv`/`virtualenvwrapper`
 
 ---
 
-# Virtual environments with `conda`
+# <!-- fit --> Virtual environments with `conda` - Create
 
-If familiar, you can use Anaconda  Navigator. ![width:200px](assets/images/anaconda-logo.png)
+- Can be created in Anaconda Navigator
+- Or, can be created in Terminal or Anaconda Prompt (see below)
 
-Alternatively, open your **Terminal** or **Anaconda Prompt** and use the `conda create` command to setup an empty virtual environment. For example,
+To create an environment named `myenv` with access to the latest version of Python,
 
 ```bash
-conda create --name myenv python=3.6
+conda create --name myenv python
 ```
-
-where `python=3.6` specifies the Python version you want for the environment.
 
 ---
 
-# Virtual environments with `conda`
+# <!-- fit --> Virtual environments with `conda` - Use
 
-To *activate* the environment at any time,
+To *activate* and use the environment,
 
 ```bash
 conda activate myenv
+# Example usage:
+conda install foo
+python myscript.py
 ```
-
-Then, you may install packages (e.g. `conda install scipy`).
 
 To *deactivate* the environment,
 
@@ -156,31 +158,55 @@ conda deactivate
 
 ---
 
-# Virtual environments with `venv`
+# <!-- fit --> Virtual environments with `venv` - Create
 
 - The simplest way to get started without `conda`
 - Only works with Python 3 (for Python 2 see `virtualenv`)
+- No installation needed
+
+To create the environment,
 
 ```bash
 python -m venv path/to/myenv
+```
 
+---
+
+# <!-- fit --> Virtual environments with `venv` - Use
+
+To activate and use the environment,
+
+```bash
 source path/to/myenv/bin/activate
-# ... you can now install packages in this environment, e.g.
-pip install foo==1.0  # example installing version 1.0
+# Example usage:
+pip install foo==1.0  # installing version 1.0 of a package
+python myscript.py    # running a script
+```
+
+To deactivate the environment and go back to system Python,
+
+```bash
 deactivate
 ```
 
 ---
 
-# <!-- fit --> Virtual environments with `virtualenv`
+# <!-- fit --> Virtual environments with `virtualenv` - Install
 
-- Compatible with Python 2
-- Compatible with `virtualenvwrapper`
-- More features
+- Compatible with Python 2 and `virtualenvwrapper`
+- More features (see the [docs](https://virtualenv.pypa.io/en/latest/) for examples)
+
+To install `virtualenv`,
 
 ```bash
 python -m pip install virtualenv
 ```
+
+where `python` is your system python.
+
+---
+
+# <!-- fit --> Virtual environments with `virtualenv` - Create
 
 To create the environment,
 
@@ -188,13 +214,17 @@ To create the environment,
 virtualenv path/to/myenv
 ```
 
+Activating and using the environment is the same as with `venv`.
+
 ---
 
-# <!-- fit --> Virtual environments with `virtualenvwrapper`
+# <!-- fit --> Virtual environments with `virtualenvwrapper` - Install
 
 - Provides memorable, easy to use commands
-- Requires a bit more setup
-- Use [virtualenvwraper-win](https://pypi.org/project/virtualenvwrapper-win/) on Windows OS
+- Requires a bit more setup (see e.g. the [docs](https://virtualenvwrapper.readthedocs.io/en/latest/))
+- Need to use [virtualenvwraper-win](https://pypi.org/project/virtualenvwrapper-win/) for Windows OS
+
+To install `virtualenvwrapper`,
 
 ```bash
 python -m pip install virtualenvwrapper
@@ -204,7 +234,7 @@ See [here](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) for 
 
 ---
 
-# <!-- fit --> Virtual environments with `virtualenvwrapper`
+# <!-- fit --> Virtual environments with `virtualenvwrapper` - Setup
 
 For example, on Unix-like OS, add these lines to your shell startup file (e.g. `.bashrc`, `.profile`, `.zshrc`)
 
@@ -222,7 +252,7 @@ source path/to/startup/file
 
 ---
 
-# <!-- fit --> Virtual environments with `virtualenvwrapper`
+# <!-- fit --> Virtual environments with `virtualenvwrapper` - Create
 
 To make an environment,
 
@@ -230,11 +260,22 @@ To make an environment,
 mkvirtualenv myenv
 ```
 
-then to activate the environment,
+To activate and use the environment,
 
 ```bash
 workon myenv
 ```
+
+Deactivate in the same way as before with the `deactivate` command.
+
+---
+
+# Virtual environments - Summary
+
+ - | `conda` | `venv` | `virtualenv`/`virtualenvwrapper`
+ -- | -- | -- | --
+Pros | Easy to use if you use conda to manage Python | Easy to use with Python 3 | Provides more memorable commands and features
+Cons | `conda` package management can be confusing | Lacks some features of its parent package | Requires installation and setup
 
 ---
 
@@ -245,11 +286,13 @@ Assuming Jupyter is installed on your computer. What if you want to run a Jupyte
 **No need to install Jupyter in every environment!**
 
 You only need to install the IPython kernelspec for that environment. See [here](https://ipython.readthedocs.io/en/stable/install/kernel_install.html
-) for more.
+) for more information.
 
 ---
 
 # Jupyter Notebooks - `conda`
+
+If we want to run a Jupyter notebook in the `myenv` `conda` environment,
 
 ```bash
 conda activate myenv  # make sure we are in myenv
@@ -257,9 +300,13 @@ conda install ipykernel
 python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
 ```
 
+Launch Jupyter and you should see a new kernel option named "Python 3 (myenv)".
+
 ---
 
 # Jupyter Notebooks - `pip`
+
+It is similar when using `pip`,
 
 ```bash
 source ~/.virtualenvs/myenv/bin/activate  # if using venv or virtualenv OR
@@ -269,6 +316,8 @@ pip install ipykernel
 python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)"
 ```
 
+Launch Jupyter and you should see a new kernel option named "Python 3 (myenv)".
+
 ---
 <!-- _class: lead -->
 
@@ -277,3 +326,36 @@ python -m ipykernel install --user --name myenv --display-name "Python 3 (myenv)
 ---
 
 # <!--fit--> How do I manage different Python versions?
+
+- If using `conda` each environment can have its own Python interpreter, e.g.
+
+  ```bash
+  conda create --name myenv python=3.7
+  ```
+
+  will create an environment specifically for Python 3.7
+
+- `virtualenv` allows you to specify the path to a Python interpreter
+
+- Otherwise, consider using `pyenv` (download instructions [here](https://github.com/pyenv/pyenv))
+
+---
+
+# What is `pyenv`?
+
+- Can be installed with Homebrew on MacOS or compiled from source
+- Manages several versions of Python on your machine
+- Provides easy ways to install different Python versions
+- Can be used with `virtualenv` and `virtualenvwrapper` via `pyenv-virtualenv` and `pyenv-virtualenvwrapper`
+- If interested, see these blogs for getting started [here](https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14) and [here](https://gist.github.com/wronk/a902185f5f8ed018263d828e1027009b)
+
+---
+
+# Demonstration
+
+I will switch to the Terminal to demonstrate setting up and using virtual environments...
+
+---
+<!-- class: lead -->
+
+# Thank you for listening!
