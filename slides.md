@@ -351,6 +351,19 @@ Launch Jupyter and you should see a new kernel option named "Python 3 (myenv)".
 
 ---
 
+# Workflow
+
+Starting a new project with Python?
+
+1. Create a dedicated environment for the project
+2. Activate that environment
+3. Install packages required for the project
+4. Write and run code within that environment
+5. Keep a list of requirements so others can run your code
+6. Deactivate the environment when you're done
+
+---
+
 # Demonstration
 
 I will switch to the Terminal to demonstrate setting up and using virtual environments...
@@ -358,4 +371,4 @@ I will switch to the Terminal to demonstrate setting up and using virtual enviro
 ---
 <!-- class: lead -->
 
-# Thank you for listening!
+# Thank you! Any questions?
