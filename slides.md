@@ -5,6 +5,7 @@ paginate: true
 _paginate: false
 ---
 <!-- _class: lead -->
+<!-- _footer: 'University of Birmingham > School of Physics and Astronomy > Sun, Stars and Exoplanets Group'-->
 
 # Python Virtual Environments
 
@@ -21,6 +22,12 @@ Alex Lyttle | Skills Session | 14 May 2021
 4. Will they work with Jupyter notebooks?
 5. How do I manage different Python versions?
 6. Live demonstration
+
+---
+
+# Quiz
+
+Please see the quiz results on how our group uses Python [here](https://forms.office.com/Pages/AnalysisPage.aspx?id=z8oksN7eQUKhXDyX1VPp80bAVNqYiQ9Glgg3nzijKFFUOUJVUU1XV0FNMTc3UkwzRUcxOUdEVTdFWS4u&AnalyzerToken=Zc8qk1qNlK0QhdlzzG01F8ANQrIL4Sxs) (requires institution login).
 
 ---
 
@@ -90,7 +97,7 @@ python myscript.py             # Runs the script
 Later, we update `foo` to use a new feature,
 
 ```bash
-pip install --upgrade foo
+python -m pip install --upgrade foo
 ```
 
 We run `myscript.py` again, but now there's an error! The `bar` package doesn't work with the updated `foo` package.
@@ -120,7 +127,7 @@ When you install a package, it may have *dependencies* &mdash; i.e. other requir
 
 Depends on how you installed Python
 - Anaconda/Miniconda uses `conda` to manage environments
-- Otherwise
+- Or, use these **if you don't have `conda`**
   - `venv`  
   - `virtualenv`/`virtualenvwrapper`
 
@@ -129,7 +136,7 @@ Depends on how you installed Python
 # <!-- fit --> Virtual environments with `conda` - Create
 
 - Can be created in Anaconda Navigator
-- Or, can be created in Terminal or Anaconda Prompt (see below)
+- Or, can be created in the terminal or Anaconda Prompt (see below or the [docs](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) for more)
 
 To create an environment named `myenv` with access to the latest version of Python,
 
@@ -160,7 +167,7 @@ conda deactivate
 
 # <!-- fit --> Virtual environments with `venv` - Create
 
-- The simplest way to get started without `conda`
+- The simplest way to get started **if you don't have `conda`**
 - Only works with Python 3 (for Python 2 see `virtualenv`)
 - No installation needed
 
@@ -193,7 +200,7 @@ deactivate
 
 # <!-- fit --> Virtual environments with `virtualenv` - Install
 
-- Compatible with Python 2 and `virtualenvwrapper`
+- Compatible with Python 2 and 3, and `virtualenvwrapper`
 - More features (see the [docs](https://virtualenv.pypa.io/en/latest/) for examples)
 
 To install `virtualenv`,
@@ -272,10 +279,10 @@ Deactivate in the same way as before with the `deactivate` command.
 
 # Virtual environments - Summary
 
- - | `conda` | `venv` | `virtualenv`/`virtualenvwrapper`
- -- | -- | -- | --
-Pros | Easy to use if you use conda to manage Python | Easy to use with Python 3 | Provides more memorable commands and features
-Cons | `conda` package management can be confusing | Lacks some features of its parent package | Requires installation and setup
+ /   | `conda`                                       | `venv`                                    | `virtualenv`/`virtualenvwrapper`
+ --- | --------------------------------------------- | ----------------------------------------- | --------------------------------------------
+Pros | Easy to use if you use conda to manage Python | Easy to use with Python 3                 | Provides more memorable commands and features
+Cons | `conda` package management can be confusing   | Lacks some features of its parent package | Requires installation and setup
 
 ---
 
@@ -306,10 +313,10 @@ Launch Jupyter and you should see a new kernel option named "Python 3 (myenv)".
 
 # Jupyter Notebooks - `pip`
 
-It is similar when using `pip`,
+When using `pip` with `venv`/`virtualenv`/`virtualenvwrapper`,
 
 ```bash
-source ~/.virtualenvs/myenv/bin/activate  # if using venv or virtualenv OR
+source ~/.virtualenvs/myenv/bin/activate  # if using venv/virtualenv OR
 workon myenv                              # if using virtualenvwrapper
 
 pip install ipykernel
@@ -327,15 +334,18 @@ Launch Jupyter and you should see a new kernel option named "Python 3 (myenv)".
 
 # <!--fit--> How do I manage different Python versions?
 
-- If using `conda` each environment can have its own Python interpreter, e.g.
+- If using `conda` each environment can have its own Python interpreter. E.g. create an environment with Python 3.7,
 
   ```bash
-  conda create --name myenv python=3.7
+  conda create --name myotherenv python=3.7
   ```
 
-  will create an environment specifically for Python 3.7
+- Or, install multiple Python versions on your system and
 
-- `virtualenv` allows you to specify the path to a Python interpreter
+  ```bash
+  path/to/other/python -m venv path/to/myothervenv        # if using venv
+  virutalenv -p path/to/other/python path/to/myothervenv  # if using virtualenv
+  ```
 
 - Otherwise, consider using `pyenv` (download instructions [here](https://github.com/pyenv/pyenv))
 
@@ -343,6 +353,7 @@ Launch Jupyter and you should see a new kernel option named "Python 3 (myenv)".
 
 # What is `pyenv`?
 
+- Useful if you don't use `conda`
 - Can be installed with Homebrew on MacOS or compiled from source
 - Manages several versions of Python on your machine
 - Provides easy ways to install different Python versions
@@ -366,7 +377,7 @@ Starting a new project with Python?
 
 # Demonstration
 
-I will switch to the Terminal to demonstrate setting up and using virtual environments...
+I will switch to the terminal to demonstrate setting up and using virtual environments...
 
 ---
 <!-- class: lead -->
